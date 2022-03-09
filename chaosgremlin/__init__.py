@@ -8,6 +8,7 @@ __all__ = ["__version__", "GREMLIN_BASE_URL", "auth"]
 __version__ = '0.3.0'
 GREMLIN_BASE_URL = "https://api.gremlin.com/v1"
 
+
 def auth(email: str, password: str, org_name: str):
     """
     Private function that authorizes against the Gremlin API.
@@ -31,14 +32,3 @@ def auth(email: str, password: str, org_name: str):
                 u=email, o=org_name))
 
     return session
-
-def auth_key(api_key: str):
-    """
-    Private function that returns mock session containing only an API Key.
-    """
-    if api_key is None:
-        raise FailedActivity(
-            "Gremlin authentication failed: No API Key present"
-            )
-
-    return {'header': f'Key {api_key}'}
